@@ -11,16 +11,22 @@
       error-message="I think URL is not usable for this purpose"
     >
       <template v-slot:append>
-        <q-btn flat icon="east" :class="{ 'bg-primary': bgPrimary }" />
+        <q-btn
+          flat
+          icon="east"
+          :class="{ 'bg-primary': bgPrimary }"
+          @click="buttonEvent"
+        />
       </template>
     </q-input>
   </div>
 </template>
 
 <script>
-import { isValid } from "@/service/CoreService";
+import { getListID, getVideoID, isList, isValid } from "@/service/CoreService";
 
 export default {
+  inject: ["setPage", "setSection"],
   data() {
     return {
       url: "https://www.youtube.com/watch?v=yA5Xx-I_46U&ab_channel=OrhunKayaalpLet%27sPlay",
@@ -35,6 +41,19 @@ export default {
     deactiveBg: function () {
       this.bgPrimary = false;
     },
+    buttonEvent: function () {
+      this.setSection(true);
+      if (isList(this.url)) {
+        this.setPage("List");
+        this.$router.push("list/" + getListID(this.url));
+      } else {
+        this.setPage("Video");
+        this.$router.push("video/" + getVideoID(this.url));
+      }
+    },
+  },
+  mounted() {
+    this.setSection(false);
   },
   watch: {
     url() {
@@ -48,11 +67,12 @@ export default {
   transition: 1s;
 }
 .url-field {
-  display: flex;
-  justify-content: center;
+  margin: auto;
   margin-top: 5vh;
-  .q-field {
-    width: 75%;
+  width: 75%;
+  text-align: center;
+  @media (max-width: 600px) {
+    width: 100%;
   }
 }
 </style>

@@ -10,13 +10,5 @@ export default {
 };
 </script>
 <style>
-* {
-  padding: 0px;
-  margin: 0px;
-}
-body {
-  background-color: #000;
-  height: 100vh;
-  color: white;
-}
+
 </style>

@@ -27,3 +27,9 @@ export const getVideoID = function (url = "") {
     else return url.substring(i + 2, url.length);
   } else return url.split("/")[3];
 };
+export const getListID = function (url = "") {
+  const i = url.indexOf("list=");
+  const e = url.indexOf("&", i);
+  if (e != -1) return url.substring(i + 5, e);
+  else return url.substring(i + 5, url.length);
+};

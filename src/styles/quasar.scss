@@ -1,3 +1,40 @@
-@import './quasar.variables.scss';
-@import '~quasar-styl';
+@import "./quasar.variables.scss";
+@import "~quasar-styl";
 // @import '~quasar-addon-styl';
+
+@mixin justifyCenter(
+  $direction: column,
+  $wrap: nowrap,
+  $align: center,
+  $start: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $start;
+  align-content: $align;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  transition: 1s ease-in-out;
+}
+
+body {
+  @include justifyCenter;
+  background-color: #000;
+  height: 100vh;
+  color: white;
+}
+header {
+  width: 100vw;
+  height: 30vh;
+  position: relative;
+}
+section {
+  width: 100vw;
+  height: 50vh;
+  position: relative;
+}
