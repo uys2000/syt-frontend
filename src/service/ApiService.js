@@ -1,5 +1,5 @@
-const url = "http://localhost:3001/api";
-
+const url = "https://syt-backend.onrender.com/api";
+console.log(process.env.APIURL)
 export const getInfoVideo = function (id) {
   return fetch(url + "/info/video/" + id, {
     method: "GET", // *GET, POST, PUT, DELETE, etc.

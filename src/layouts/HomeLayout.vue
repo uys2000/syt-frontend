@@ -6,7 +6,6 @@
   <section :class="{ hide: isHide, show: !isHide }">
     <router-view />
   </section>
-  <q-btn class="bg-primary" @click="changePage" />
 </template>
 
 <script>
@@ -26,8 +25,12 @@ export default {
   },
   methods: {
     setLogoPosition: function () {
-      if (this.page == "Home") this.isRight = false;
-      else this.isRight = true;
+      if (this.page == "Home") {
+        console.log(this.page, this.$route.fullPath);
+        this.isRight = false;
+      } else {
+        this.isRight = true;
+      }
     },
     changePage: function () {
       if (this.page == "Home") this.page = "Video";
@@ -35,6 +38,8 @@ export default {
     },
   },
   mounted() {
+    if (this.$route.fullPath == "/") this.page = "Home";
+    else this.page = "Video";
     this.setLogoPosition();
   },
   watch: {
